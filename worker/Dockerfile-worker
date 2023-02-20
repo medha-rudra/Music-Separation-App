@@ -1,0 +1,17 @@
+# how to build docker - docker image for worker
+FROM xserrat/facebook-demucs:latest
+
+RUN pip3 install --upgrade minio redis pika requests
+RUN pip3 install flask
+RUN pip3 install jsonpickle
+
+WORKDIR /
+
+COPY worker-server.py /
+COPY output /
+COPY input /
+
+ENTRYPOINT python3 worker-server.py
+
+
+

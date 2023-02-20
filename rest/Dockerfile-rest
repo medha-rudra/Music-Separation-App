@@ -1,0 +1,11 @@
+# how to build docker - docker image for rest
+FROM ubuntu-20.04:flair:latest
+
+RUN pip3 install pika redis requests
+
+WORKDIR /srv
+COPY    rest-server.py /srv
+
+docker pull ubuntu-20.04/flair:latest
+
+docker run --rm -it ubuntu-20.04/flair:latest bash
