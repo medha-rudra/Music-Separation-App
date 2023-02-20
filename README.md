@@ -1,26 +1,19 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=9307402&assignment_repo_type=AssignmentRepo)
-# lab7-music-separation-kubernetes
+# Music Separation App
 ![separation](images/music_separation.png)
 Music-Separation-as-a-service (MSaaS)
+
 ## Overview
-In this lab, you're going to create a kubernetes cluster that provides a REST API for automatic music separation service and prepares the different tracks for retrieval. You can, if you wish, provide an alternate gRPC API following the genera outline of this lab.
+Created a kubernetes cluster that provides a REST API for automatic music separation service and prepares the different tracks for retrieval.
 
 You may [want to bookmark this kubernetes "cheat sheet"](https://kubernetes.io/docs/reference/kubectl/cheatsheet/).
 
-You should complete the QwikLabs tutorials on using Docker and Kubernetes and go through [the csci 4253/5253 Kubernetes tutorial](https://github.com/cu-csci-4253-datacenter/kubernetes-tutorial) prior to starting this homework. That tutorial (and the QwikLab tutorials) shows you how to construct a simple Dockerfile, build a Docker image, push it to the Docker Hub or Google registry and then deploy it on Kubernetes. You can either use the Google cloud shell to do your work or install Docker and Kubernetes on your laptop.
-
-You will deploy containers providing the following services.
-+ **rest** - the REST frontend will accept API requests for analysis and handle queries concerning MP3's. The REST worker will queue tasks to workers using `redis` queues. Full details are provided in [rest/README.md](rest/README.md).
-+ **worker** - Worker nodes will receive work requests to analyze MP3's and cache results in a cloud object store (probably Min.io). Full details are provided in [worker/README.md](worker/README.md).
-+ **redis** - You will be provided a Redis deployment and service to provide a redis database server. Full details are provided in [redis/README.md](redis/README.md.)
+Containers deployed provide the following services:
++ **rest** - the REST frontend will accept API requests for analysis and handle queries concerning MP3's. The REST worker will queue tasks to workers using `redis` queues.
++ **worker** - Worker nodes will receive work requests to analyze MP3's and cache results in a cloud object store (probably Min.io).
++ **redis** - a Redis deployment and service to provide a redis database server.
 
 ### Waveform Source Separation Analysis
-The worker will use [open source waveform source separation analysis](https://github.com/facebookresearch/demucs) software from Facebook. See the [worker README](worker/README.md) for more details. Our reason for turning this into a micro-service is because it takes a long time to run the source separation (about 3-4x the running time of a song).
-
-### Setting up Kubernetes
-You will need to create a Kubernetes cluster to run your code. You can either use a local install of Docker and Kubernetes or use Google Cloud's service, GKE. You **should a local setup for development** and then switch to GKE at the end.
-
-See the [directions in the Kubernetes tutorial on deploying a GKE cluster](https://github.com/cu-csci-4253-datacenter/kubernetes-tutorial/tree/master/07-guestbook-on-gke).
+The worker uses [open source waveform source separation analysis](https://github.com/facebookresearch/demucs) software from Facebook. Our reason for turning this into a micro-service is because it takes a long time to run the source separation (about 3-4x the running time of a song).
 
 ### Cloud object service
 
